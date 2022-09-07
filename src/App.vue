@@ -1,9 +1,19 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Home</router-link>&nbsp;|
+    <router-link to="/about">About</router-link>&nbsp;|
+    <router-link :to="{name:'counter'}">Counter</router-link>&nbsp;|
+    <router-link :to="{name:'users'}">Users</router-link>&nbsp;|
+    <router-link :to="{name:'pokemon-search'}">Buscar</router-link>&nbsp;|
+    <router-link :to="{name:'todo'}">Todo</router-link>&nbsp;|
+    <router-link :to="{name:'slots'}">Slots</router-link>
   </nav>
-  <router-view/>
+
+  <router-view v-slot="{ Component, route }">
+    <keep-alive>
+      <component :is="Component" :key="route.name"></component>
+    </keep-alive>
+  </router-view>
 </template>
 
 <style>
